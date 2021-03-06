@@ -1,0 +1,9 @@
+FROM dorowu/ubuntu-desktop-lxde-vnc:bionic
+ENV PYTHONUNBUFFERED 1 
+RUN apt-get update -y -qq \
+&& apt-get install python python3 python3-pip -y -qq \
+&& make /prjroot
+COPY requirements.txt /prjroot/
+WORKDIR /prjroot
+RUN pip3 install -r requirements.txt
+COPY . /prjroot

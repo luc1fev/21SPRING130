@@ -1,0 +1,12 @@
+FROM ubuntu:20.04
+ENV PYTHONUNBUFFERED 1
+ENV DEBIAN_FRONTEND noninteractive
+RUN echo "America/Los_Angeles" > /etc/timezone
+
+RUN apt-get update
+RUN apt-get -y install software-properties-common
+
+RUN add-apt-repository universe
+RUN apt update
+RUN apt install freeglut3-dev -y -qq
+RUN apt-get install ubuntu-gnome-desktop tightvncserver -y
