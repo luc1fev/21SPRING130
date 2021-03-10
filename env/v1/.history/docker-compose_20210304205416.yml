@@ -5,5 +5,3 @@ services:
     build: .
     ports:
       - "5900:5900"
-    volumes:
-      - .:/prjroot
