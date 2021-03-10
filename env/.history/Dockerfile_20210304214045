@@ -1,0 +1,14 @@
+FROM dorowu/ubuntu-desktop-lxde-vnc:bionic
+ENV PYTHONUNBUFFERED 1
+RUN apt update && apt upgrade -y && \
+    apt-get update -y -qq && \
+    apt-get upgrade -y -qq
+RUN apt-get install python -y -qq
+RUN apt-get install python3 -y -qq
+RUN apt-get install python3-pip -y -qq
+RUN apt-get install vim
+RUN mkdir /prjroot
+COPY requirements.txt /prjroot/
+WORKDIR /prjroot
+RUN pip3 install -r requirements.txt
+COPY . /prjroot
