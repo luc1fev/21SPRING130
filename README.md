@@ -3,8 +3,9 @@
 ## Resources
 
 [openAI Mario Environment](https://pypi.org/project/gym-super-mario-bros/)
-
-
+[DeepLearning FlappyBird DQN](https://github.com/yenchenlin/DeepLearningFlappyBird)
+[RL tutorial](https://github.com/MorvanZhou/Reinforcement-learning-with-tensorflow)
+[Mario DQN](https://github.com/aleju/mario-ai)
 
 # Process
 - [ ] 如何部署在 Amazon/Google 上
