@@ -6,6 +6,11 @@
 [DeepLearning FlappyBird DQN](https://github.com/yenchenlin/DeepLearningFlappyBird)
 [RL tutorial](https://github.com/MorvanZhou/Reinforcement-learning-with-tensorflow)
 [Mario DQN](https://github.com/aleju/mario-ai)
+[Deep Q](https://blog.paperspace.com/building-double-deep-q-network-super-mario-bros/)
+[NN](https://www.youtube.com/watch?v=BGeTG1M632U)
+[RL](https://www.statworx.com/at/blog/using-reinforcement-learning-to-play-super-mario-bros-on-nes-using-tensorflow/)
+[RL](https://cai.tools.sap/blog/the-future-with-reinforcement-learning-part-1/)
+[pytorch](https://pytorch.org/tutorials/intermediate/mario_rl_tutorial.html)[DDQN](https://blog.paperspace.com/building-double-deep-q-network-super-mario-bros/)
 
 # Process
 - [ ] 如何部署在 Amazon/Google 上
