@@ -1,7 +1,0 @@
-version: '3'
-
-services:
-  prj130:
-    build: .
-    ports:
-      - "5900:5900"
