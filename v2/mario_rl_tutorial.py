@@ -105,7 +105,7 @@ env = JoypadSpace(env, [["right"], ["right", "A"]])
 
 env.reset()
 next_state, reward, done, info = env.step(action=0)
-print(f"{next_state.shape},\n {reward},\n {done},\n {info}")
+#print(f"{next_state.shape},\n {reward},\n {done},\n {info}")
 
 
 ######################################################################
@@ -286,8 +286,11 @@ class Mario:
         self.use_cuda = torch.cuda.is_available()
 
         # Mario's DNN to predict the most optimal action - we implement this in the Learn section
+        # net = nn.Module<- float returned
         self.net = MarioNet(self.state_dim, self.action_dim).float()
         if self.use_cuda:
+            # to
+            # https://pytorch.org/docs/stable/generated/torch.nn.Module.html#torch.nn.Module.to
             self.net = self.net.to(device="cuda")
 
         self.exploration_rate = 1
@@ -295,7 +298,7 @@ class Mario:
         self.exploration_rate_min = 0.1
         self.curr_step = 0
 
-        self.save_every = 5e5  # no. of experiences between saving Mario Net
+        self.save_every = 5e2  # no. of experiences between saving Mario Net
 
     def act(self, state):
         """
@@ -327,6 +330,7 @@ class Mario:
 
         # increment step
         self.curr_step += 1
+        print(self.curr_step,"\t steps")
         return action_idx
 
 
@@ -563,6 +567,7 @@ class Mario(Mario):
         save_path = (
             self.save_dir / f"mario_net_{int(self.curr_step // self.save_every)}.chkpt"
         )
+        print(save_path)
         torch.save(
             dict(model=self.net.state_dict(), exploration_rate=self.exploration_rate),
             save_path,
@@ -587,7 +592,9 @@ class Mario(Mario):
         if self.curr_step % self.sync_every == 0:
             self.sync_Q_target()
 
+        print(self.curr_step,'in Mario leran')
         if self.curr_step % self.save_every == 0:
+            print('save')
             self.save()
 
         if self.curr_step < self.burnin:
@@ -740,9 +747,9 @@ save_dir.mkdir(parents=True)
 mario = Mario(state_dim=(4, 84, 84), action_dim=env.action_space.n, save_dir=save_dir)
 
 logger = MetricLogger(save_dir)
-episodes = 10
+episodes = 40
 for e in range(episodes):
-
+    print('ha?')
     state = env.reset()
 
     # Play the game!
@@ -773,14 +780,5 @@ for e in range(episodes):
 
     logger.log_episode()
 
-    if e % 20 == 0:
+    if e % 5 == 0:
         logger.record(episode=e, epsilon=mario.exploration_rate, step=mario.curr_step)
-
-
-######################################################################
-# Conclusion
-# """""""""""""""
-#
-# In this tutorial, we saw how we can use PyTorch to train a game-playing AI. You can use the same methods
-# to train an AI to play any of the games at the `OpenAI gym <https://gym.openai.com/>`__. Hope you enjoyed this tutorial, feel free to reach us at
-# `our github <https://github.com/yuansongFeng/MadMario/>`__!
