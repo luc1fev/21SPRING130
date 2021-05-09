@@ -121,20 +121,26 @@ class Paul:
 
         self.use_cuda = torch.cuda.is_available()
 
+##############
         # # Mario's DNN to predict the most optimal action - we implement this in the Learn section
         # self.net = MarioNet(self.state_dim, self.action_dim).float()
         # if self.use_cuda:
         #     self.net = self.net.to(device="cuda")
-
+##############
         self.exploration_rate = 1
         self.exploration_rate_decay = 0.99999975
         self.exploration_rate_min = 0.1
+        self.gamma = 0.9
+
         self.curr_step = 0
 
         self.save_every = 5e5  # no. of experiences between saving Mario Net
+
+        ##############
+        ### GPU CAUTION
         self.memory = deque(maxlen=100000)
-        self.batch_size = 3
-        self.gamma = 0.9
+        self.batch_size = 32
+        ##############
 
     def act(self, state):
         """
@@ -385,7 +391,7 @@ mario = Paul(state_dim=(4, 84, 84), action_dim=env.action_space.n, save_dir=save
 
 logger = MetricLogger(save_dir)
 
-episodes = 10
+episodes = 1000
 for e in range(episodes):
 
     state = env.reset()
@@ -421,11 +427,11 @@ for e in range(episodes):
         logger.record(episode=e, epsilon=mario.exploration_rate, step=mario.curr_step)
 
 
-done = True
-for step in range(5000):
-    if done:
-        state = env.reset()
-    state, reward, done, info = env.step(env.action_space.sample())
-    env.render()
+# done = True
+# for step in range(5000):
+#     if done:
+#         state = env.reset()
+#     state, reward, done, info = env.step(env.action_space.sample())
+#     env.render()
 
-env.close()
+# env.close()

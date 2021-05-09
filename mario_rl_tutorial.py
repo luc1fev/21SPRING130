@@ -299,13 +299,13 @@ class Mario:
 
     def act(self, state):
         """
-    Given a state, choose an epsilon-greedy action and update value of step.
+        Given a state, choose an epsilon-greedy action and update value of step.
 
-    Inputs:
-    state(LazyFrame): A single observation of the current state, dimension is (state_dim)
-    Outputs:
-    action_idx (int): An integer representing which action Mario will perform
-    """
+        Inputs:
+        state(LazyFrame): A single observation of the current state, dimension is (state_dim)
+        Outputs:
+        action_idx (int): An integer representing which action Mario will perform
+        """
         # EXPLORE
         if np.random.rand() < self.exploration_rate:
             action_idx = np.random.randint(self.action_dim)
@@ -497,6 +497,7 @@ class Mario(Mario):
         current_Q = self.net(state, model="online")[
             np.arange(0, self.batch_size), action
         ]  # Q_online(s,a)
+        print(current_Q)
         return current_Q
 
     @torch.no_grad()
@@ -741,7 +742,8 @@ mario = Mario(state_dim=(4, 84, 84), action_dim=env.action_space.n, save_dir=sav
 
 logger = MetricLogger(save_dir)
 
-episodes = 10
+## changing org = 10
+episodes = 1000
 for e in range(episodes):
 
     state = env.reset()

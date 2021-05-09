@@ -318,6 +318,7 @@ class Mario:
             else:
                 state = torch.tensor(state)
             state = state.unsqueeze(0)
+            ## todo
             action_values = self.net(state, model="online")
             action_idx = torch.argmax(action_values, axis=1).item()
 
@@ -494,6 +495,7 @@ class Mario(Mario):
         self.gamma = 0.9
 
     def td_estimate(self, state, action):
+        # todo
         current_Q = self.net(state, model="online")[
             np.arange(0, self.batch_size), action
         ]  # Q_online(s,a)
@@ -501,6 +503,7 @@ class Mario(Mario):
 
     @torch.no_grad()
     def td_target(self, reward, next_state, done):
+        # todo
         next_state_Q = self.net(next_state, model="online")
         best_action = torch.argmax(next_state_Q, axis=1)
         next_Q = self.net(next_state, model="target")[

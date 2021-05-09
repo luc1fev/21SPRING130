@@ -60,3 +60,17 @@
 更新逻辑
 
 ![678cb558a9d59c33ef4810c9618baf34a9577686](README/678cb558a9d59c33ef4810c9618baf34a9577686.svg)
+
+
+
+## Code helper 
+
+Pytorch.squeeze(x)
+
+移除 x 中张量为 1 的 列
+
+
+
+random.sample(x,size)
+
+从 x 里找 size 个

@@ -1,6 +1,6 @@
 *.history
 *.zip
 *master
-*.mp4
+130proj/env/*.mp4
 
 *.idea
