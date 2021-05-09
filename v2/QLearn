@@ -1,0 +1,26 @@
+import numpy as np
+import torch
+
+
+Espilon = 0.9
+N_STATES = 6   # the length of the 1 dimensional world
+ACTIONS = ['left', 'right']     # available actions
+EPSILON = 0.9   # greedy police
+ALPHA = 0.1     # learning rate
+GAMMA = 0.9    # discount factor
+MAX_EPISODES = 1  # maximum episodes
+
+
+class QL:
+    def __init__(sefl,states,actions):
+        states = np.zeros(15,16)
+        action = np.arrage(3)
+        table = pd.DataFrame(
+            np.zeros((states,len(actions))),
+            columns = actions
+        )
+
+    return table
+
+    def choose_action(self,states,q_table):
+        state_actions =

@@ -140,6 +140,9 @@ class Paul:
         ### GPU CAUTION
         self.memory = deque(maxlen=100000)
         self.batch_size = 32
+        self.burnin = 1e4  # min. experiences before training
+        self.learn_every = 3  # no. of experiences between updates to Q_online
+        self.sync_every = 1e4  # no. of experiences between Q_target & Q_online sync
         ##############
 
     def act(self, state):
@@ -163,7 +166,8 @@ class Paul:
             else:
                 state = torch.tensor(state)
             state = state.unsqueeze(0)
-            action_values = self.net(state, model="online")
+            action_values = state
+            #action_values = self.net(state, model="online")
             action_idx = torch.argmax(action_values, axis=1).item()
 
         # decrease exploration_rate
