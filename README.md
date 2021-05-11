@@ -83,6 +83,7 @@ random.sample(x,size)
 
 
 
+
 # 演讲
 
 感谢上一个演讲 Markov-Decision, optimal policy
