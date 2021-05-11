@@ -2,5 +2,6 @@
 *.zip
 *master
 130proj/env/*.mp4
-
+otherExamples/*.zip
+otherExamples/*
 *.idea
